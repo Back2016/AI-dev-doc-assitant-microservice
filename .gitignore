@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+.Python
+*.log
+
+# Virtual environments
+.venv/
+env/
+ENV/
+venv/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Mac and Linux system files
+.DS_Store
+Thumbs.db
+
+# dotenv
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Chroma / FAISS vectorstore directories
+chroma_db/
+faiss_index/
+
+# Docker
+*.pid
+*.sock
+*.db
+*.tar
+*.img
+*.bak
+
+# Pytest cache
+.pytest_cache/
+.cache/
+
+# Reports or temp files
+*.out
+*.tmp
+*.swp
+*.bak
+
+# Coverage
+htmlcov/
+coverage.xml
+.tox/
+.mypy_cache/
+.coverage
