@@ -181,10 +181,10 @@ def health_check():
     # Check OpenAI key loaded
     from os import getenv
     if not getenv("OPENAI_API_KEY"):
-        checks["openai"] = "missing"
+        checks["openaiKey"] = "missing"
         checks["status"] = "degraded"
     else:
-        checks["openai"] = "ok"
+        checks["openaiKey"] = "ok"
 
     # Check Chroma vectorstore dir exists
     import os
