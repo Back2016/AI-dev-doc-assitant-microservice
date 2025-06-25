@@ -60,3 +60,9 @@ coverage.xml
 #test
 # Test files
 tests/
+# Legacy files
+legacy/
+debug/
+
+#docs
+*.md

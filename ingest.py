@@ -45,6 +45,8 @@ def main():
         try:
             loader = TextLoader(path, encoding="utf-8")
             docs_from_file = loader.load()  # returns [Document(page_content=...)]
+            for doc in docs_from_file:
+                doc.metadata["source"] = os.path.basename(path)
             raw_documents.extend(docs_from_file)
         except Exception as e:
             print(f"Error loading file {path}: {e}")
@@ -61,9 +63,16 @@ def main():
 
     split_docs = []
     for raw_doc in raw_documents:
-        split_docs.extend(text_splitter.split_documents([raw_doc]))
+        chunks = text_splitter.split_documents([raw_doc])
+        # Ensure source metadata is copied to all split chunks
+        for chunk in chunks:
+            if "source" not in chunk.metadata:
+                chunk.metadata["source"] = raw_doc.metadata["source"]
+        split_docs.extend(chunks)
 
     print(f"✅ Split into {len(split_docs)} chunks.")
+    if split_docs:
+        print("Sample chunk metadata:", split_docs[0].metadata)
 
     # ─── Step 7: Embed & Persist to Chroma ───────────────────────────────────────
     vectorstore = Chroma.from_documents(
